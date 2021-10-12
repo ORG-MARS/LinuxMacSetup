@@ -1,0 +1,41 @@
+[user]
+    name = suzukaze hazuki
+    email = kaix+github@fastmail.com
+
+[alias]
+    st = status
+    co = checkout
+    p = push -u
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    un = reset --soft HEAD^
+    idff = diff
+
+[core]
+    excludesfile = ~/.xiaomo/etc/gitignore_global
+    pager = cat
+    quotepath = false
+[push]
+    default = current
+[color]
+    ui = true
+    branch = auto
+    diff = auto
+    interactive = auto
+    status = auto
+[grep]
+    extendRegexp = true
+    lineNumber = true
+[branch]
+    autosetuprebase = always
+
+[diff]
+    tool = icdiff
+[difftool]
+    prompt = false
+[difftool "icdiff"]
+    cmd = /usr/local/bin/icdiff --line-numbers $LOCAL $REMOTE
+
+[includeIf "gitdir:~/.Bitbucket/"]
+   path = .xiaomo/alt/etc/gitconfig
+[includeIf "gitdir:~/.xiaomo/share/bitbucket/"]
+   path = .xiaomo/alt/etc/gitconfig

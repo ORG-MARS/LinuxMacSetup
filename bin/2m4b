@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+#
+# Author:         suzukaze hazuki <suzukaze.hazuki2020@gmail.com>
+# Filename:       2m4b
+# Date created:   2021-02-27 16:52
+# Last modified:  2021-02-27 16:52
+# Modified by:    suzukaze hazuki <suzukaze.hazuki2020@gmail.com>
+#
+# Description:
+# create an m4b audiobook file from a movie or an mp3 file.
+# Changelog:
+# 2021-02-28 11:28: added mp3 support.
+# 2021-03-03 15:55: use min function to avoid if-else.
+
+DEFAULT_SAMPLE_RATE=32000
+DEFAULT_BIT_RATE=80
+
+fullPath="$1"
+filename=$(basename "$fullPath")
+suffix=$(echo "$filename" | awk -F '.' '{print $NF}')
+basename=$(basename "$filename" "$suffix")
+temp_name="${basename}mp3"
+output_name="${basename}m4b"
+
+current_bit_rate=$(afinfo "$fullPath" | grep '^bit rate' | awk '{printf("%s\n"), $3/1000}')
+bit_rate=$(python -c "print(min(${current_bit_rate}, ${DEFAULT_BIT_RATE}))")
+
+if [ "$suffix" = "mp3" ]; then
+  afconvert "${fullPath}" -v -s 3 -o "${output_name}" -q 127 -b "${bit_rate}000" -f m4bf -d aac
+else
+  ffmpeg -i "$fullPath" "${temp_name}" && afconvert "${temp_name}" -v -s 3 -o "${output_name}" -q 127 -b "${bit_rate}000" -f m4bf -d aac && rm "${temp_name}"
+fi
