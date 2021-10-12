@@ -42,7 +42,7 @@ cloneEtc() {
 
   git clone https://github.com/houko/mac_config.git "$BASE_DIR/share/github/mac_config"
   ln -s "$BASE_DIR/share/github/mac_config" "$BASE_DIR/mac_config"
-  touchDone()
+  touchDone
 }
 
 homebrew() {
