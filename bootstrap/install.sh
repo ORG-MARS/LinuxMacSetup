@@ -7,7 +7,7 @@ set -o pipefail
 BASE_DIR="$HOME/.xiaomo"
 
 # helpers
-check-done() {
+checkDone() {
   done_dir="$BASE_DIR/var/run/done"
   mkdir -p "$done_dir"
   func="${FUNCNAME[1]}"
@@ -18,15 +18,15 @@ check-done() {
   fi
 }
 
-touch-done() {
+touchDone() {
   done_dir="$BASE_DIR/var/run/done"
   func="${FUNCNAME[1]}"
   touch "$done_dir/$func"
 }
 
 # configuration steps
-clone-etc() {
-  check-done || return 0
+cloneEtc() {
+  checkDone || return 0
   xcode-select --install 2>/dev/null || true
 
   mkdir -p "$BASE_DIR/share/github"
@@ -42,11 +42,11 @@ clone-etc() {
 
   git clone https://github.com/houko/mac_config.git "$BASE_DIR/share/github/mac_config"
   ln -s "$BASE_DIR/share/github/mac_config" "$BASE_DIR/mac_config"
-  touch-done
+  touchDone()
 }
 
 homebrew() {
-  check-done || return 0
+  checkDone || return 0
   bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
   brew install bash
@@ -103,18 +103,18 @@ homebrew() {
 
   podman machine init
   podman machine start
-  touch-done
+  touchDone
 }
 
-python-packages() {
-  check-done || return 0
+pythonPackages() {
+  checkDone || return 0
   python3 -m pip install -U pip
   python3 -m pip install ansible black icdiff poetry psutil ptpython pyflakes pygments requests sh Snape termcolor virtualenv
-  touch-done
+  touchDone
 }
 
-write-defaults() {
-  check-done || return 0
+writeDefaults() {
+  checkDone || return 0
 
   # disable the dashboard
   defaults write com.apple.dashboard mcx-disabled -bool TRUE
@@ -137,19 +137,19 @@ write-defaults() {
   defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
   defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 
-  touch-done
+  touchDone
 }
 
-build-ps1() {
-  check-done || return 0
+buildPs1() {
+  checkDone || return 0
   brew install libgit2
   cd "$BASE_DIR/mac_config/go"
   go build -o ../bin/ps1 ps1.go
-  touch-done
+  touchDone
 }
 
-create-links() {
-  check-done || return 0
+createLinks() {
+  checkDone || return 0
   # for configuration in $HOME
   ln -sf "$BASE_DIR/mac_config/bashrc" "$HOME/.bashrc"
   ln -sf "$HOME/.bashrc" "$HOME/.bash_profile"
@@ -167,21 +167,21 @@ create-links() {
   mkdir -p "$HOME/.config"
   ln -sf /usr/local/bin/python3 /usr/local/bin/python
   ln -sf /usr/local/bin/pip3 /usr/local/bin/pip
-  touch-done
+  touchDone
 }
 
-misc-config() {
-  check-done || return 0
+miscConfig() {
+  checkDone || return 0
   chsh -s /bin/bash
   nvim +PackerSync +qall
   (cd "$BASE_DIR/mac_config" && git remote set-url origin git@github.com:xiaomo/mac_config.git)
-  touch-done
+  touchDone
 }
 
-clone-etc
+cloneEtc
 homebrew
-python-packages
-write-defaults
-build-ps1
-create-links
-misc-config
+pythonPackages
+writeDefaults
+buildPs1
+createLinks
+miscConfig
