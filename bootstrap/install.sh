@@ -4,142 +4,178 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
-# This stage does not have any prerequisites. We should run this after the first boot.
 BASE_DIR="$HOME/.xiaomo"
 
-
 # helpers
-check-done () {
-    done_dir="$BASE_DIR/var/run/done"
-    mkdir -p "$done_dir"
-    func="${FUNCNAME[1]}"
-    if [ -f "$done_dir/$func" ]
-    then
-        return 1
-    else
-        return 0
-    fi
+check-done() {
+  done_dir="$BASE_DIR/var/run/done"
+  mkdir -p "$done_dir"
+  func="${FUNCNAME[1]}"
+  if [ -f "$done_dir/$func" ]; then
+    return 1
+  else
+    return 0
+  fi
 }
 
-touch-done () {
-    done_dir="$BASE_DIR/var/run/done"
-    func="${FUNCNAME[1]}"
-    touch "$done_dir/$func"
+touch-done() {
+  done_dir="$BASE_DIR/var/run/done"
+  func="${FUNCNAME[1]}"
+  touch "$done_dir/$func"
 }
 
 # configuration steps
-clone-etc () {
-    check-done || return 0
-    xcode-select --install 2>/dev/null || true
+clone-etc() {
+  check-done || return 0
+  xcode-select --install 2>/dev/null || true
 
-    mkdir -p "$BASE_DIR/share/github"
+  mkdir -p "$BASE_DIR/share/github"
 
-    while true
-    do
-        has_git=$(git --version 2>/dev/null || echo "false")
-        if [ "$has_git" != "false" ]
-        then
-            break
-        fi
-        echo "sleeping"
-        sleep 5
-    done
+  while true; do
+    has_git=$(git --version 2>/dev/null || echo "false")
+    if [ "$has_git" != "false" ]; then
+      break
+    fi
+    echo "sleeping"
+    sleep 5
+  done
 
-    git clone https://github.com/houko/etc.git "$BASE_DIR/share/github/etc"
-    ln -s "$BASE_DIR/share/github/etc" "$BASE_DIR/etc"
-    touch-done
+  git clone https://github.com/houko/mac_config.git "$BASE_DIR/share/github/mac_config"
+  ln -s "$BASE_DIR/share/github/mac_config" "$BASE_DIR/mac_config"
+  touch-done
 }
 
-homebrew () {
-    check-done || return 0
-    bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+homebrew() {
+  check-done || return 0
+  bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-    # system utils
-    # development tools
-    # utils
-    brew install \
-        bash bash-completion coreutils findutils gawk gcc git-delta gnu-sed gnu-tar gnu-time gnutls openssl procmail readline tree wget \
-        colordiff cwlogs ffmpeg fzf git go jq podman python3 rust shellcheck sqlite tig \
-        mtr mpv neovim p7zip youtube-dl zoxide
+  brew install bash
+  brew install bash-completion
+  brew install coreutils
+  brew install findutils
+  brew install gawk
+  brew install gcc
+  brew install git-delta
+  brew install gnu-sed
+  brew install gnu-tar
+  brew install gnu-time
+  brew install gnutls
+  brew install openssl
+  brew install procmail
+  brew install readline
+  brew install tree
+  brew install wget
+  brew install colordiff
+  brew install cwlogs
+  brew install ffmpeg
+  brew install fzf
+  brew install git
+  brew install go
+  brew install jq
+  brew install python3
+  brew install shellcheck
+  brew install sqlite
+  brew install tig
+  brew install mtr
+  brew install mpv
+  brew install p7zip
+  brew install youtube-dl
+  brew install zoxide
 
-    brew tap homebrew/cask
-    brew tap homebrew/cask-fonts
+  brew tap homebrew/cask
+  brew tap homebrew/cask-fonts
 
-    brew install basictex bitwarden chiaki homebrew/cask/dash drawio firefox font-fira-code grammarly hammerspoon iina itsycal kitty slack typora virtualbox virtualbox-extension-pack zoom
-    podman machine init
-    podman machine start
-    touch-done
+  brew install basictex
+  brew install bitwarden
+  brew install homebrew/cask/dash
+  brew install drawio
+  brew install chrome
+  brew install firefox
+  brew install font-fira-code
+  brew install grammarly
+  brew install hammerspoon
+  brew install iina
+  brew install itsycal
+  brew install slack
+  brew install typora
+  brew install zoom
+  brew install podman
+
+  podman machine init
+  podman machine start
+  touch-done
 }
 
-python-packages () {
-    check-done || return 0
-    python3 -m pip install -U pip
-    python3 -m pip install ansible black icdiff neovim poetry psutil ptpython pyflakes pygments requests sh Snape termcolor virtualenv
-    touch-done
+python-packages() {
+  check-done || return 0
+  python3 -m pip install -U pip
+  python3 -m pip install ansible black icdiff poetry psutil ptpython pyflakes pygments requests sh Snape termcolor virtualenv
+  touch-done
 }
 
-write-defaults () {
-    check-done || return 0
+write-defaults() {
+  check-done || return 0
 
-    # disable the dashboard
-    defaults write com.apple.dashboard mcx-disabled -bool TRUE; killall Dock
+  # disable the dashboard
+  defaults write com.apple.dashboard mcx-disabled -bool TRUE
+  killall Dock
 
-    # be quiet please finder
-    defaults write com.apple.finder FinderSounds -bool FALSE; killall Finder
+  # be quiet please finder
+  defaults write com.apple.finder FinderSounds -bool FALSE
+  killall Finder
 
-    # disable delay when
-    defaults write com.apple.dock autohide-fullscreen-delayed -bool FALSE; killall Dock
+  # disable delay when
+  defaults write com.apple.dock autohide-fullscreen-delayed -bool FALSE
+  killall Dock
 
-    # minimize key repeat
-    defaults write -g InitialKeyRepeat -int 10
-    defaults write -g KeyRepeat -int 1
+  # minimize key repeat
+  defaults write -g InitialKeyRepeat -int 10
+  defaults write -g KeyRepeat -int 1
 
-    # Disable smarts, I don't need your help thanks.
-    defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
-    defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
-    defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+  # Disable smarts, I don't need your help thanks.
+  defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
+  defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
+  defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 
-    touch-done
+  touch-done
 }
 
-build-ps1 () {
-    check-done || return 0
-    brew install libgit2
-    cd "$BASE_DIR/etc/go"
-    go build -o ../bin/ps1 ps1.go
-    touch-done
+build-ps1() {
+  check-done || return 0
+  brew install libgit2
+  cd "$BASE_DIR/mac_config/go"
+  go build -o ../bin/ps1 ps1.go
+  touch-done
 }
 
-create-links () {
-    check-done || return 0
-    # for configuration in $HOME
-    ln -sf "$BASE_DIR/etc/bashrc" "$HOME/.bashrc"
-    ln -sf "$HOME/.bashrc" "$HOME/.bash_profile"
-    ln -sf "$BASE_DIR/etc/gitconfig" "$HOME/.gitconfig"
-    ln -sf "$BASE_DIR/etc/hammerspoon" "$HOME/.hammerspoon"
-    ln -sf "$BASE_DIR/etc/inputrc.sh" "$HOME/.inputrc"
-    ln -sf "$BASE_DIR/etc/pythonrc.py" "$HOME/.pythonrc"
-    ln -sf "$BASE_DIR/etc/ptpython" "$HOME/.ptpython"
-    ln -sf "$BASE_DIR/etc/snape.json" "$HOME/.snape.json"
-    ln -sf "$BASE_DIR/etc/nvim" "$HOME/.vim"
-    ln -sf "$BASE_DIR/share/github" "$HOME/.Github"
-    ln -sf "$BASE_DIR/share/ssh" "$HOME/.ssh"
+create-links() {
+  check-done || return 0
+  # for configuration in $HOME
+  ln -sf "$BASE_DIR/mac_config/bashrc" "$HOME/.bashrc"
+  ln -sf "$HOME/.bashrc" "$HOME/.bash_profile"
+  ln -sf "$BASE_DIR/mac_config/gitconfig" "$HOME/.gitconfig"
+  ln -sf "$BASE_DIR/mac_config/hammerspoon" "$HOME/.hammerspoon"
+  ln -sf "$BASE_DIR/mac_config/inputrc.sh" "$HOME/.inputrc"
+  ln -sf "$BASE_DIR/mac_config/pythonrc.py" "$HOME/.pythonrc"
+  ln -sf "$BASE_DIR/mac_config/ptpython" "$HOME/.ptpython"
+  ln -sf "$BASE_DIR/mac_config/snape.json" "$HOME/.snape.json"
+  ln -sf "$BASE_DIR/mac_config/nvim" "$HOME/.vim"
+  ln -sf "$BASE_DIR/share/github" "$HOME/.Github"
+  ln -sf "$BASE_DIR/share/ssh" "$HOME/.ssh"
 
-    # for configuration in .config
-    mkdir -p "$HOME/.config"
-    ln -sf "$BASE_DIR/etc/nvim" "$HOME/.config/nvim"
-    ln -sf "$BASE_DIR/etc/kitty" "$HOME/.config/kitty"
-    ln -sf /usr/local/bin/python3 /usr/local/bin/python
-    ln -sf /usr/local/bin/pip3 /usr/local/bin/pip
-    touch-done
+  # for configuration in .config
+  mkdir -p "$HOME/.config"
+  ln -sf /usr/local/bin/python3 /usr/local/bin/python
+  ln -sf /usr/local/bin/pip3 /usr/local/bin/pip
+  touch-done
 }
 
-misc-config () {
-    check-done || return 0
-    chsh -s /bin/bash
-    nvim +PackerSync +qall
-    (cd "$BASE_DIR/etc" && git remote set-url origin git@github.com:xiaomo/etc.git)
-    touch-done
+misc-config() {
+  check-done || return 0
+  chsh -s /bin/bash
+  nvim +PackerSync +qall
+  (cd "$BASE_DIR/mac_config" && git remote set-url origin git@github.com:xiaomo/mac_config.git)
+  touch-done
 }
 
 clone-etc

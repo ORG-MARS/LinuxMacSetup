@@ -39,8 +39,8 @@ fi
 
 # Alter the following to reflect the location of this file.
 #
-[ -n "$BASH_COMPLETION" ] || BASH_COMPLETION=~/.xiaomo/etc/bash_completion.sh
-[ -n "$BASH_COMPLETION_DIR" ] || BASH_COMPLETION_DIR=/usr/local/etc/bash_completion.d
+[ -n "$BASH_COMPLETION" ] || BASH_COMPLETION=~/.xiaomo/mac_config/bash_completion.sh
+[ -n "$BASH_COMPLETION_DIR" ] || BASH_COMPLETION_DIR=/usr/local/mac_config/bash_completion.d
 readonly BASH_COMPLETION BASH_COMPLETION_DIR
 
 # Set a couple of useful vars
@@ -654,9 +654,9 @@ _mac_addresses()
         "s/.*[[:space:]]\($re\)[[:space:]].*/\1/p" -ne \
         "s/.*[[:space:]]\($re\)[[:space:]]*$/\1/p" ) )
 
-    # /etc/ethers
+    # /mac_config/ethers
     COMPREPLY=( "${COMPREPLY[@]}" $( sed -ne \
-        "s/^[[:space:]]*\($re\)[[:space:]].*/\1/p" /etc/ethers 2>/dev/null ) )
+        "s/^[[:space:]]*\($re\)[[:space:]].*/\1/p" /mac_config/ethers 2>/dev/null ) )
 
     COMPREPLY=( $( compgen -W '${COMPREPLY[@]}' -- "$cur" ) )
     __ltrim_colon_completions "$cur"
@@ -666,24 +666,24 @@ _mac_addresses()
 #
 _configured_interfaces()
 {
-    if [ -f /etc/debian_version ]; then
+    if [ -f /mac_config/debian_version ]; then
         # Debian system
         COMPREPLY=( $( compgen -W "$( sed -ne 's|^iface \([^ ]\{1,\}\).*$|\1|p'\
-            /etc/network/interfaces )" -- "$cur" ) )
-    elif [ -f /etc/SuSE-release ]; then
+            /mac_config/network/interfaces )" -- "$cur" ) )
+    elif [ -f /mac_config/SuSE-release ]; then
         # SuSE system
         COMPREPLY=( $( compgen -W "$( printf '%s\n' \
-            /etc/sysconfig/network/ifcfg-* | \
+            /mac_config/sysconfig/network/ifcfg-* | \
             sed -ne 's|.*ifcfg-\(.*\)|\1|p' )" -- "$cur" ) )
-    elif [ -f /etc/pld-release ]; then
+    elif [ -f /mac_config/pld-release ]; then
         # PLD Linux
         COMPREPLY=( $( compgen -W "$( command ls -B \
-            /etc/sysconfig/interfaces | \
+            /mac_config/sysconfig/interfaces | \
             sed -ne 's|.*ifcfg-\(.*\)|\1|p' )" -- "$cur" ) )
     else
         # Assume Red Hat
         COMPREPLY=( $( compgen -W "$( printf '%s\n' \
-            /etc/sysconfig/network-scripts/ifcfg-* | \
+            /mac_config/sysconfig/network-scripts/ifcfg-* | \
             sed -ne 's|.*ifcfg-\(.*\)|\1|p' )" -- "$cur" ) )
     fi
 }
@@ -834,8 +834,8 @@ _uids()
     elif type perl &>/dev/null; then
         COMPREPLY=( $( compgen -W '$( perl -e '"'"'while (($uid) = (getpwent)[2]) { print $uid . "\n" }'"'"' )' -- "$cur" ) )
     else
-        # make do with /etc/passwd
-        COMPREPLY=( $( compgen -W '$( cut -d: -f3 /etc/passwd )' -- "$cur" ) )
+        # make do with /mac_config/passwd
+        COMPREPLY=( $( compgen -W '$( cut -d: -f3 /mac_config/passwd )' -- "$cur" ) )
     fi
 }
 
@@ -849,8 +849,8 @@ _gids()
     elif type perl &>/dev/null; then
         COMPREPLY=( $( compgen -W '$( perl -e '"'"'while (($gid) = (getgrent)[2]) { print $gid . "\n" }'"'"' )' -- "$cur" ) )
     else
-        # make do with /etc/group
-        COMPREPLY=( $( compgen -W '$( cut -d: -f3 /etc/group )' -- "$cur" ) )
+        # make do with /mac_config/group
+        COMPREPLY=( $( compgen -W '$( cut -d: -f3 /mac_config/group )' -- "$cur" ) )
     fi
 }
 
@@ -859,8 +859,8 @@ _gids()
 _services()
 {
     local sysvdir famdir
-    [ -d /etc/rc.d/init.d ] && sysvdir=/etc/rc.d/init.d || sysvdir=/etc/init.d
-    famdir=/etc/xinetd.d
+    [ -d /mac_config/rc.d/init.d ] && sysvdir=/mac_config/rc.d/init.d || sysvdir=/mac_config/init.d
+    famdir=/mac_config/xinetd.d
     COMPREPLY=( $( printf '%s\n' \
         $sysvdir/!(*.rpm@(orig|new|save)|*~|functions) ) )
 
@@ -972,7 +972,7 @@ _allowed_groups()
 _shells()
 {
     COMPREPLY=( "${COMPREPLY[@]}" $( compgen -W \
-        '$( command grep "^[[:space:]]*/" /etc/shells 2>/dev/null )' \
+        '$( command grep "^[[:space:]]*/" /mac_config/shells 2>/dev/null )' \
         -- "$cur" ) )
 }
 
@@ -985,14 +985,14 @@ _fstypes()
     if [ -e /proc/filesystems ] ; then
         # Linux
         fss="$( cut -d$'\t' -f2 /proc/filesystems )
-             $( awk '! /\*/ { print $NF }' /etc/filesystems 2>/dev/null )"
+             $( awk '! /\*/ { print $NF }' /mac_config/filesystems 2>/dev/null )"
     else
         # Generic
-        fss="$( awk '/^[ \t]*[^#]/ { print $3 }' /etc/fstab 2>/dev/null )
-             $( awk '/^[ \t]*[^#]/ { print $3 }' /etc/mnttab 2>/dev/null )
-             $( awk '/^[ \t]*[^#]/ { print $4 }' /etc/vfstab 2>/dev/null )
-             $( awk '{ print $1 }' /etc/dfs/fstypes 2>/dev/null )
-             $( [ -d /etc/fs ] && command ls /etc/fs )"
+        fss="$( awk '/^[ \t]*[^#]/ { print $3 }' /mac_config/fstab 2>/dev/null )
+             $( awk '/^[ \t]*[^#]/ { print $3 }' /mac_config/mnttab 2>/dev/null )
+             $( awk '/^[ \t]*[^#]/ { print $4 }' /mac_config/vfstab 2>/dev/null )
+             $( awk '{ print $1 }' /mac_config/dfs/fstypes 2>/dev/null )
+             $( [ -d /mac_config/fs ] && command ls /mac_config/fs )"
     fi
 
     [ -n "$fss" ] && \
@@ -1151,7 +1151,7 @@ _known_hosts_real()
         [ -r "$configfile" ] &&
         config=( "${config[@]}" "$configfile" )
     else
-        for i in /etc/ssh/ssh_config "${HOME}/.ssh/config" \
+        for i in /mac_config/ssh/ssh_config "${HOME}/.ssh/config" \
             "${HOME}/.ssh2/config"; do
             [ -r $i ] && config=( "${config[@]}" "$i" )
         done
@@ -1178,12 +1178,12 @@ _known_hosts_real()
 
     if [ -z "$configfile" ]; then
         # Global and user known_hosts files
-        for i in /etc/ssh/ssh_known_hosts /etc/ssh/ssh_known_hosts2 \
-            /etc/known_hosts /etc/known_hosts2 ~/.ssh/known_hosts \
+        for i in /mac_config/ssh/ssh_known_hosts /mac_config/ssh/ssh_known_hosts2 \
+            /mac_config/known_hosts /mac_config/known_hosts2 ~/.ssh/known_hosts \
             ~/.ssh/known_hosts2; do
             [ -r $i ] && kh=( "${kh[@]}" $i )
         done
-        for i in /etc/ssh2/knownhosts ~/.ssh2/hostkeys; do
+        for i in /mac_config/ssh2/knownhosts ~/.ssh2/hostkeys; do
             [ -d $i ] && khd=( "${khd[@]}" $i/*pub )
         done
     fi

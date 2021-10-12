@@ -27,11 +27,11 @@ else
 fi
 
 xiaomoDIR=~/.xiaomo
-etcdir=$xiaomoDIR"/etc"
+etcdir=$xiaomoDIR"/mac_config"
 altdir=$xiaomoDIR"/alt"
 
 # PATH ordering policy: Alt dir things > My own script > Homebrew > System, bin > sbin
-export PATH="$altdir/bin:~/.xiaomo/etc/bin:~/.xiaomo/go/bin:/usr/local/opt/ruby/bin:/usr/local/bin:/usr/local/sbin:/bin:/usr/bin:/usr/sbin:/sbin:~/Library/Python/3.7/bin:~/.cargo/bin:/usr/local/opt/coreutils/bin:/usr/local/opt/fzf/bin"
+export PATH="$altdir/bin:~/.xiaomo/mac_config/bin:~/.xiaomo/go/bin:/usr/local/opt/ruby/bin:/usr/local/bin:/usr/local/sbin:/bin:/usr/bin:/usr/sbin:/sbin:~/Library/Python/3.7/bin:~/.cargo/bin:/usr/local/opt/coreutils/bin:/usr/local/opt/fzf/bin"
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 export LANG=en_US.UTF-8
 export DYLD_FALLBACK_LIBRARY_PATH=/usr/local/opt/openssl/lib
@@ -51,9 +51,9 @@ then
 fi
 
 # For Alternative settings
-if [ -f "$altdir/etc/bashrc" ]
+if [ -f "$altdir/mac_config/bashrc" ]
 then
-    . "$altdir/etc/bashrc"
+    . "$altdir/mac_config/bashrc"
 fi
 
 # for fzf
@@ -147,7 +147,7 @@ export EDITOR=nvim
 #################
 # accessibility #
 #################
-eval `"$COLORS" "$HOME/.xiaomo/etc/dir_colors"`
+eval `"$COLORS" "$HOME/.xiaomo/mac_config/dir_colors"`
 
 # Don’t clear the screen after quitting a manual page.
 export MANPAGER='less -X';
