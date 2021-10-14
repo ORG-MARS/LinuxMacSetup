@@ -8,4 +8,5 @@ set show-all-if-ambiguous on
 set completion-query-items 30
 # tab completion would add / at the end of a soft link if the target is a dir.
 set mark-symlinked-directories on
+set completion-ignore-case on
 set bell-style none

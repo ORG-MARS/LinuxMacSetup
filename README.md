@@ -1,4 +1,16 @@
+# 前提条件
+
+安装xcode
+
+# install
+
+- git clone https://github.com/houko/mac_config.git ~/.xiaomo
+- cd ~/.xiaomo/bootstrap
+- chmod +x install.sh
+- sh install.sh
+
 # 基本配置
+
 1. aws
 2. bin
 3. bootstrap
@@ -21,5 +33,3 @@
 20. pylintrc
 21. pythonrc
 
-# install
-curl -s https://10f1b0d443221489b23b8c57b398244d28f1f37d@raw.githubusercontent.com/houko/mac_config/master/bootstrap/install.sh?token=ADAKK7U36A4ZW7Q5WWETL73BMVEIU > install.sh && chmod +x install.sh && ./install.sh

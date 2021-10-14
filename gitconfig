@@ -1,6 +1,6 @@
 [user]
     name = suzukaze hazuki
-    email = kaix+github@fastmail.com
+    email = suzukaze.hazuki2020@gmail.com
 
 [alias]
     st = status
@@ -34,8 +34,3 @@
     prompt = false
 [difftool "icdiff"]
     cmd = /usr/local/bin/icdiff --line-numbers $LOCAL $REMOTE
-
-[includeIf "gitdir:~/.Bitbucket/"]
-   path = .xiaomo/alt/mac_config/gitconfig
-[includeIf "gitdir:~/.xiaomo/share/bitbucket/"]
-   path = .xiaomo/alt/mac_config/gitconfig

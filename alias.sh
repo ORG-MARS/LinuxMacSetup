@@ -1,67 +1,49 @@
-if [ "x$ARCH" = "xDarwin" ]; then
-  # GNU rules.
-  alias rm='grm'
-  alias head='ghead'
-  alias tail='gtail'
-  alias preview='open -a Preview '
-  alias win='/Applications/VirtualBox.app/Contents/MacOS/VBoxManage startvm winx'
-  alias diablo='open "/Applications/Diablo III/Diablo III.app" --args -launch -OnlineService.Matchmaking.ServerPool=AU1'
-  alias retouch='sudo pkill TouchBarServer'
-  alias mtr='sudo /usr/local/sbin/mtr'
-  alias typora='open -a Typora '
-
-  # BSD fix
-  alias sed='gsed'
-  alias awk='gawk'
-fi
-
 alias grep='grep --color'
-alias vi='nvim'
 
 # Generic
 alias su='su -'
 alias df='df -h'
-alias diff='colordiff'
 
-# Typos
+alias ls='ls -l'
+alias lsa='ls -al'
+
+alias py3='python3'
+alias which='type -p'
+alias md='mkdir -p'
+
+alias daemon='supervisorctl -c ~/.supervisord.conf'
+alias act='source venv/bin/activate'
+# 强制遗忘docker神技
+alias docker='podman'
+# 随机一个可用端口
+alias randp='python -c "import random; print(random.randint(1025, 32768))"'
+# 更新并清理brew管理的软件
+alias brewup='brew update && brew upgrade && brew cleanup'
+# 生成一个新的ssh key
+alias gssh='ssh-keygen'
+# 查看外网Ip
+alias ip='dig +short myip.opendns.com @resolver1.opendns.com'
+
+# clear
 alias clera='clear'
-alias ls-l='ls -l'
+alias clar='clear'
+alias cls='clear'
+
+# make相关操作
+alias mn='make clean'
+alias mt='make test'
 alias mkae='make'
 alias maek='make'
-alias gti='git'
 
-# Acesssibilities
-alias py3='python3'
-alias md='mkdir -p'
-alias g='git'
-alias which='type -p'
+# 目录跳转
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
-alias rc='find . -name "*.pyc" -delete'
-alias rt='rm -f *.torrent'
-alias mn='make clean'
-alias mt='make test'
-alias :q='exit'
-alias ZZ='exit'
-alias py='ptpython3 --config-file $HOME/.xiaomo/mac_config/ptpython/config.py --history-file $HOME/.xiaomo/mac_config/ptpython/history'
-alias daemon='supervisorctl -c ~/.supervisord.conf'
-alias ga='git add'
-alias act='source venv/bin/activate'
-alias rerc='. ~/.bashrc; unset PIPENV_ACTIVE VIRTUAL_ENV PIP_PYTHON_PATH'
-alias pipfix='pip install -U ptpython neovim black'
-alias gcp='pbpaste | xargs git clone'
-# https://news.sherlock.stanford.edu/posts/when-setting-an-environment-variable-gives-you-a-40-x-speedup
-#alias fls='(LS_COLORS="ex=00:su=00:sg=00:ca=00:" ls)'
-alias pcat='pygmentize -f terminal256 -O style=native -g'
-alias docker='podman'
 
-alias randport='python -c "import random; print(random.randint(1025, 32768))"'
-alias brewup='brew update && brew upgrade && brew cleanup'
-alias lvi='nvim --noplugin'
-alias dssh='ssh-keygen -R'
-alias ip='dig +short myip.opendns.com @resolver1.opendns.com'
+# git
+alias ga='git add'
+alias gti='git'
 
 # kubectl setting
 alias k=kubectl

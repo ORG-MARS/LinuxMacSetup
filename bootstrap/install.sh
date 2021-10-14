@@ -10,7 +10,7 @@ BASE_DIR="$HOME/.xiaomo"
 checkDone() {
   done_dir="$BASE_DIR/var/run/done"
   mkdir -p "$done_dir"
-  func="${FUNCNAME[1]}"
+  func="${FUNC_NAME[1]}"
   if [ -f "$done_dir/$func" ]; then
     return 1
   else
@@ -20,20 +20,20 @@ checkDone() {
 
 touchDone() {
   done_dir="$BASE_DIR/var/run/done"
-  func="${FUNCNAME[1]}"
+  func="${FUNC_NAME[1]}"
   touch "$done_dir/$func"
 }
 
 # configuration steps
-cloneEtc() {
+cloneMacConfigFromGithub() {
   checkDone || return 0
   xcode-select --install 2>/dev/null || true
 
   mkdir -p "$BASE_DIR/share/github"
 
   while true; do
-    has_git=$(git --version 2>/dev/null || echo "false")
-    if [ "$has_git" != "false" ]; then
+    var hasGit="$(git --version 2>/dev/null || echo 'false')"
+    if [ "$hasGit" != "false" ]; then
       break
     fi
     echo "sleeping"
@@ -49,8 +49,10 @@ homebrew() {
   checkDone || return 0
   bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-  brew install bash
-  brew install bash-completion
+  # 添加cask和cask-fonts源
+  brew tap homebrew/cask
+  brew tap homebrew/cask-fonts
+
   brew install coreutils
   brew install findutils
   brew install gawk
@@ -82,25 +84,32 @@ homebrew() {
   brew install youtube-dl
   brew install zoxide
 
-  brew tap homebrew/cask
-  brew tap homebrew/cask-fonts
-
-  brew install basictex
-  brew install bitwarden
+  # api查看工具
   brew install homebrew/cask/dash
+  # 流程图、UML等
   brew install drawio
+  # firefox浏览器
   brew install chrome
+  # google 浏览器
   brew install firefox
+  # google fira-code字体
   brew install font-fira-code
+  # 英语纠错工具
   brew install grammarly
+  # mac 增强工具
   brew install hammerspoon
+  # 开源播放器
   brew install iina
+  # 日历小组件
   brew install itsycal
-  brew install slack
+  # markdown编辑器
   brew install typora
-  brew install zoom
-  brew install podman
 
+  # 下一代终端工具(代码iterm2)
+  brew install --cask hyper
+
+  # pod man
+  brew install podman
   podman machine init
   podman machine start
   touchDone
@@ -178,7 +187,7 @@ miscConfig() {
   touchDone
 }
 
-cloneEtc
+cloneMacConfigFromGithub
 homebrew
 pythonPackages
 writeDefaults
