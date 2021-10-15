@@ -8,7 +8,6 @@ BASE_DIR="$HOME/.mac_config"
 
 # configuration steps
 cloneMacConfigFromGithub() {
-  checkDone || return 0
   xcode-select --install 2>/dev/null || true
 
   mkdir -p "$BASE_DIR/share/github"
@@ -19,7 +18,6 @@ cloneMacConfigFromGithub() {
 
 # https://formulae.brew.sh/formula/
 homebrew() {
-  checkDone || return 0
   bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
   # 添加cask和cask-fonts源
@@ -164,10 +162,8 @@ homebrew() {
 }
 
 pythonPackages() {
-  checkDone || return 0
   python3 -m pip install -U pip
   python3 -m pip install ansible black icdiff poetry psutil ptpython pyflakes pygments requests sh Snape termcolor virtualenv
-  touchDone
 }
 
 writeDefaults() {
@@ -190,7 +186,6 @@ writeDefaults() {
 }
 
 createLinks() {
-  checkDone || return 0
   # for configuration in $HOME
   ln -sf "$BASE_DIR/mac_config/hammerspoon" "$HOME/.hammerspoon"
   ln -sf "$BASE_DIR/mac_config/alias.sh" "$HOME/.alias"
