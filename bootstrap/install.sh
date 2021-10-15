@@ -1,9 +1,5 @@
 #!/bin/bash
 
-set -o errexit
-set -o nounset
-set -o pipefail
-
 BASE_DIR="$HOME/.mac_config"
 
 # configuration steps
@@ -151,6 +147,9 @@ homebrew() {
 
   # aws cli
   brew install awscli@2
+
+  # 可以切换k8s集群
+  brew install kubectx
 
   # postman
   brew install postman

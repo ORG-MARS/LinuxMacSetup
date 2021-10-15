@@ -2,31 +2,14 @@
 
 安装xcode
 
+# 注意事项
+
+- 在默认终端下执行命令
+- 安装时需要输入管理员用户密码
+
 # install
+
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/houko/mac_config/master/bootstrap/install.sh)"
 
-
 # 基本配置
-
-1. aws
-2. bin
-3. bootstrap
-4. config
-5. go
-6. hammerspoon
-7. kube
-8. python
-9. switchHosts
-10. fzf
-11. alias
-12. bash_completions
-13. bash_functions
-14. bashrc
-15. dir_colors
-16. gitconfig
-17. gitignore_global
-18. hyper.js
-19. inputrc
-20. pylintrc
-21. pythonrc
 
