@@ -169,7 +169,7 @@ homebrew() {
 
   # nodejs版本管理
   brew install n
-  n 14
+  sudo n 14
   node -v
   npm -v
   npm install -g yarn
