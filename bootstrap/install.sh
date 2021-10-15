@@ -30,24 +30,29 @@ homebrew() {
 
   # 可以生成树形结构
   brew install tree
+  tree --version
 
   # 下载工具
   brew install wget
+  wget --version
 
   # 查找和历史记录
   brew install fzf
 
   # golang
   brew install go
+  go version
 
   # 检测shell语法是否有错
   brew install shellcheck
 
   # git命令行增强工具
   brew install tig
+  tiv -v
 
   # 网络测试工具 需要sudo权限 sudo mtr baidu.com
   brew install mtr
+  mtr -v
 
   # youtube视频下载和视频转码
   brew install ffmpeg
@@ -146,18 +151,44 @@ homebrew() {
   brew tap teamookla/speedtest
   brew update
   brew install speedtest --force
+  speedtest -v
 
   # aws cli
   brew install awscli@2
+  aws -v
 
   # 可以切换k8s集群
   brew install kubectx
+  kubectx -v
 
   # google chrome
   brew install google-drive
 
   # postman
   brew install postman
+
+  # nodejs版本管理
+  brew install n
+  n 14
+  node -v
+  npm -v
+  npm install -g yarn
+  yarn -v
+
+  # terraform 管理
+  brew install tfenv
+  tfenv install 1.0.9
+  tfenv use 1.0.9
+  terraform -v
+
+  # jdk 11
+  brew install corretto11
+
+  # golang版本控制
+  bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
+  gvm install 1.17
+  gvm use 1.17
+  go version
 
   # 安装oh-my-zsh
   sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
@@ -167,6 +198,7 @@ homebrew() {
   brew install podman
   podman machine init
   podman machine start
+  podman -v
 
   brew cleanup
 }

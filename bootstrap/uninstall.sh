@@ -147,6 +147,15 @@ homebrew() {
   # pod man
   brew uninstall podman
 
+  # nodejs多版本管理
+  brew install n
+
+  # terraform多版本管理
+  brew install tfenv
+
+  # jdk11
+  brew uninstall corretto11
+
   brew cleanup
 }
 
