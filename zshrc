@@ -116,6 +116,7 @@ export PATH="$PATH":"/opt/homebrew/Caskroom/flutter/2.2.3/flutter/.pub-cache/bin
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /opt/homebrew/bin/terraform terraform
 source <(kubectl completion zsh)
+source ~/.alias
 
 export TF_SWITCH_HOME=/Users/xiaomo/.terraform.versions
 export PATH=$TF_SWITCH_HOME:$PATH

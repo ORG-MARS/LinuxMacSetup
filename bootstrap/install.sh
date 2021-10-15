@@ -4,7 +4,7 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
-BASE_DIR="$HOME/.xiaomo"
+BASE_DIR="$HOME/.mac_config"
 
 # helpers
 checkDone() {
@@ -106,6 +106,76 @@ homebrew() {
   # markdown编辑器
   brew install typora
 
+  # clickup
+  brew install clickup
+
+  # 数据库连接软件
+  brew install sequel-ace
+
+  # shell连接工具
+  brew install electron
+
+  # gif录制工具
+  brew install libcap
+
+  # hosts管理工具
+  brew install switchhosts
+
+  # 钉钉
+  brew install dingtalk
+
+  # lark
+  brew install lark
+
+  # s3管理工具
+  brew install cyberduck
+
+  # wechat
+  brew install wechat
+  brew install qq
+  brew install qqmusic
+
+  # 网易云音乐
+  brew install neteasemusic
+
+  # 终端工具
+  brew install iterm2
+
+  # vpn工具
+  brew install tunnelblick
+
+  # vscode
+  brew install visual-studio-code
+
+  # sublime
+  brew install sublime-text
+
+  # idea
+  brew install intellij-idea
+
+  # alfred4
+  brew install alfred
+
+  # goland
+  brew install goland
+
+  # figma
+  brew install figma
+
+  # 禁用mac自带键盘
+  brew install karabiner-elements
+
+  # 测网速
+  brew tap teamookla/speedtest
+  brew update
+  brew install speedtest --force
+
+  # postman
+  brew install postman
+
+  # 安装oh-my-zsh
+  sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
   # pod man
   brew install podman
   podman machine init
@@ -145,12 +215,14 @@ writeDefaults() {
 createLinks() {
   checkDone || return 0
   # for configuration in $HOME
+  ln -sf "$BASE_DIR/mac_config/hammerspoon" "$HOME/.hammerspoon"
+  ln -sf "$BASE_DIR/mac_config/alias.sh" "$HOME/.alias"
+  rm -rf "$HOME/.zshrc"
   ln -sf "$BASE_DIR/mac_config/zshrc" "$HOME/.zshrc"
   ln -sf "$BASE_DIR/mac_config/gitconfig" "$HOME/.gitconfig"
-  ln -sf "$BASE_DIR/mac_config/hammerspoon" "$HOME/.hammerspoon"
   ln -sf "$BASE_DIR/mac_config/inputrc.sh" "$HOME/.inputrc"
-  ln -sf "$BASE_DIR/mac_config/ptpython" "$HOME/.ptpython"
   ln -sf "$BASE_DIR/mac_config/snape.json" "$HOME/.snape.json"
+  ln -sf "$BASE_DIR/mac_config/terrmaformrc" "$HOME/.terrmaformrc"
 
   # for configuration in .config
   mkdir -p "$HOME/.config"
