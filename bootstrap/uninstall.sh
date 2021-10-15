@@ -51,7 +51,7 @@ homebrew() {
   brew uninstall drawio
 
   # firefox浏览器
-  brew uninstall chrome
+  brew uninstall google-chrome
 
   # google 浏览器
   brew uninstall firefox
@@ -139,8 +139,16 @@ homebrew() {
   # postman
   brew uninstall postman
 
+  # aws cli
+  brew uninstall awscli
+
+  # kubectl
+  brew uninstall kubectx
+
   # pod man
   brew uninstall podman
+
+  brew cleanup
 }
 
 removeLinks() {

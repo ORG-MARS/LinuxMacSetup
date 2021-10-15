@@ -2,7 +2,6 @@
 
 BASE_DIR="$HOME/.mac_config"
 
-# configuration steps
 cloneMacConfigFromGithub() {
   xcode-select --install 2>/dev/null || true
 
@@ -19,6 +18,9 @@ homebrew() {
   # 添加cask和cask-fonts源
   brew tap homebrew/cask
   brew tap homebrew/cask-fonts
+
+  brew update
+  brew upgrade
 
   # gnu官方的一系列工具
   brew install coreutils
@@ -162,6 +164,8 @@ homebrew() {
   brew install podman
   podman machine init
   podman machine start
+
+  brew cleanup
 }
 
 pythonPackages() {
