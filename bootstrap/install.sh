@@ -154,6 +154,7 @@ homebrew() {
 
   # 安装oh-my-zsh
   sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+  git clone git://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
 
   # pod man
   brew install podman
