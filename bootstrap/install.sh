@@ -165,7 +165,7 @@ homebrew() {
   brew install google-drive
 
   # postman
-  brew install postman
+  brew install --cask postman
 
   # nodejs版本管理
   brew install n
