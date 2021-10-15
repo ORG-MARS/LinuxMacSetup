@@ -144,7 +144,6 @@ homebrew() {
 }
 
 removeLinks() {
-  checkDone || return 0
   # for configuration in $HOME
   rm -rf "$HOME/.hammerspoon"
   rm -rf "$HOME/.alias"

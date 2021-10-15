@@ -6,24 +6,6 @@ set -o pipefail
 
 BASE_DIR="$HOME/.mac_config"
 
-# helpers
-checkDone() {
-  done_dir="$BASE_DIR/var/run/done"
-  mkdir -p "$done_dir"
-  func="${FUNC_NAME[1]}"
-  if [ -f "$done_dir/$func" ]; then
-    return 1
-  else
-    return 0
-  fi
-}
-
-touchDone() {
-  done_dir="$BASE_DIR/var/run/done"
-  func="${FUNC_NAME[1]}"
-  touch "$done_dir/$func"
-}
-
 # configuration steps
 cloneMacConfigFromGithub() {
   checkDone || return 0
@@ -33,7 +15,6 @@ cloneMacConfigFromGithub() {
 
   git clone https://github.com/houko/mac_config.git "$BASE_DIR/share/github/mac_config"
   ln -s "$BASE_DIR/share/github/mac_config" "$BASE_DIR/mac_config"
-  touchDone
 }
 
 # https://formulae.brew.sh/formula/
@@ -180,7 +161,6 @@ homebrew() {
   brew install podman
   podman machine init
   podman machine start
-  touchDone
 }
 
 pythonPackages() {
@@ -191,8 +171,6 @@ pythonPackages() {
 }
 
 writeDefaults() {
-  checkDone || return 0
-
   # disable the dashboard
   defaults write com.apple.dashboard mcx-disabled -bool TRUE
   killall Dock
@@ -209,7 +187,6 @@ writeDefaults() {
   defaults write -g InitialKeyRepeat -int 10
   defaults write -g KeyRepeat -int 1
 
-  touchDone
 }
 
 createLinks() {
@@ -228,7 +205,6 @@ createLinks() {
   mkdir -p "$HOME/.config"
   ln -sf /usr/local/bin/python3 /usr/local/bin/python
   ln -sf /usr/local/bin/pip3 /usr/local/bin/pip
-  touchDone
 }
 
 cloneMacConfigFromGithub
