@@ -1,9 +1,5 @@
 #!/bin/bash
 
-set -o errexit
-set -o nounset
-set -o pipefail
-
 BASE_DIR="$HOME/.mac_config"
 
 # configuration steps
