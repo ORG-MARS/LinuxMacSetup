@@ -162,12 +162,30 @@ homebrew() {
 removeLinks() {
   # for configuration in $HOME
   rm -rf "$HOME/.hammerspoon"
+  echo "$HOME/.hammerspoon" has been deleted!
+
   rm -rf "$HOME/.alias"
+  echo "$HOME/.alias" has been deleted!
+
   rm -rf "$HOME/.zshrc"
+  echo "$HOME/.zshrc" has been deleted!
+
+
   rm -rf "$HOME/.gitconfig"
+  echo "$HOME/.gitconfig" has been deleted!
+
+
   rm -rf "$HOME/.inputrc"
+  echo "$HOME/.inputrc" has been deleted!
+
+
   rm -rf "$HOME/.snape.json"
+  echo "$HOME/.snape.json" has been deleted!
+
+
   rm -rf "$HOME/.terrmaformrc"
+  echo "$HOME/.terrmaformrc" has been deleted!
+
 }
 
 rmGithubSource
