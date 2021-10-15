@@ -8,7 +8,7 @@ BASE_DIR="$HOME/.mac_config"
 
 # configuration steps
 rmGithubSource() {
-  rm -rf "$BASE_DIR/mac_config"
+  rm -rf "$BASE_DIR"
 }
 
 # https://formulae.brew.sh/formula/
@@ -154,6 +154,6 @@ removeLinks() {
   rm -rf "$HOME/.terrmaformrc"
 }
 
-removeLinks
 rmGithubSource
+removeLinks
 homebrew
