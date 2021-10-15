@@ -62,7 +62,7 @@ homebrew() {
   brew install drawio
 
   # firefox浏览器
-  brew install chrome
+  brew install google-chrome
 
   # google 浏览器
   brew install firefox
@@ -148,6 +148,9 @@ homebrew() {
   brew tap teamookla/speedtest
   brew update
   brew install speedtest --force
+
+  # aws cli
+  brew install awscli@2
 
   # postman
   brew install postman
