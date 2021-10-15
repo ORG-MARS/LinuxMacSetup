@@ -93,7 +93,7 @@ homebrew() {
   brew install electron
 
   # gif录制工具
-  brew install libcap
+  brew install licecap
 
   # hosts管理工具
   brew install switchhosts
@@ -152,6 +152,9 @@ homebrew() {
 
   # 可以切换k8s集群
   brew install kubectx
+
+  # google chrome
+  brew install google-drive
 
   # postman
   brew install postman

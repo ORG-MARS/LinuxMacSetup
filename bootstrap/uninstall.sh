@@ -80,7 +80,7 @@ homebrew() {
   brew uninstall electron
 
   # gif录制工具
-  brew uninstall libcap
+  brew uninstall licecap
 
   # hosts管理工具
   brew uninstall switchhosts
@@ -140,6 +140,9 @@ homebrew() {
 
   # kubectl
   brew uninstall kubectx
+
+  # google chrome
+  brew uninstall google-drive
 
   # pod man
   brew uninstall podman
