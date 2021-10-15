@@ -11,5 +11,7 @@
 
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/houko/mac_config/master/bootstrap/install.sh)"
 
-# 基本配置
+# uninstall
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/houko/mac_config/master/bootstrap/uninstall.sh)"
+
 
