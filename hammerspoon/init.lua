@@ -1,39 +1,42 @@
-local hiper = require('hiper').new('rightcmd')
-local magnet = require('magnet')
+-- -----------------------------------------------------------------------
+--           ** HammerSpoon Config File by S1ngS1ng with ❤️ **           --
+-- -----------------------------------------------------------------------
 
-local features = {
-  -- Simple app maps
-  b = 'Books',
-  d = 'Dash',
-  f = 'Finder',
-  k = 'Kitty',
-  l = 'Slack',
-  m = 'Mail',
-  o = 'Obsidian',
-  s = 'Safari',
-  t = 'Typora',
-  x = 'Firefox',
+--   ***   Please refer to README.MD for instructions. Cheers!    ***   --
 
-  -- Rebalance the audio output, sometime my WH-H900N will end up unbalanced
-  a = function() hs.audiodevice.current()['device']:setBalance(0.5) end,
-  -- Debug
-  h = function() hs.reload(); hs.console.clearConsole() end,
-  -- Lock screen
-  i = function() hs.osascript.applescript('tell application "System Events" to keystroke "q" using {command down,control down}') end,
-  -- Pause/Play audio
-  p = function() require('hs.eventtap').event.newSystemKeyEvent("PLAY", true):post() end,
-}
+-- -----------------------------------------------------------------------
+--                         ** Something Global **                       --
+-- -----------------------------------------------------------------------
+-- Uncomment this following line if you don't wish to see animations
+-- hs.window.animationDuration = 0
 
--- Windows management features
-magnetCommands = {"0", "1", "2", "3", "4", ",", "."}
-for i = 1, 7 do
-  features[magnetCommands[i]] = function() magnet(magnetCommands[i]) end
-end
+-- -----------------------------------------------------------------------
+--                            ** Requires **                            --
+-- -----------------------------------------------------------------------
+require "window-management"
+require "vox-control"
+require "vim-binding"
+require "key-binding"
 
-for key, feature in pairs(features) do
-  if type(feature) == 'string' then
-    features[key] = function() hs.application.launchOrFocus(feature) end
+-- -----------------------------------------------------------------------
+--                            ** For Debug **                           --
+-- -----------------------------------------------------------------------
+function reloadConfig(files)
+  local doReload = false
+  for _,file in pairs(files) do
+    if file:sub(-4) == ".lua" then
+      doReload = true
+    end
+  end
+  if doReload then
+    hs.reload()
+    hs.alert.show('Config Reloaded')
   end
 end
+hs.pathwatcher.new(os.getenv("HOME") .. "/.hammerspoon/", reloadConfig):start()
 
-hiper.load_features(features)
+-- Well, sometimes auto-reload is not working, you know u.u
+hs.hotkey.bind({"cmd", "alt", "ctrl"}, "n", function()
+  hs.reload()
+end)
+hs.alert.show("Config loaded")

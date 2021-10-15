@@ -3,11 +3,8 @@
 安装xcode
 
 # install
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/houko/mac_config/master/bootstrap/install.sh)"
 
-- git clone https://github.com/houko/mac_config.git ~/.xiaomo
-- cd ~/.xiaomo/bootstrap
-- chmod +x install.sh
-- sh install.sh
 
 # 基本配置
 
