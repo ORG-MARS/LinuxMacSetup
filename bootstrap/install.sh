@@ -183,6 +183,7 @@ homebrew() {
 
   # jdk 11
   brew install corretto11
+  java --version
 
   # golang版本控制
   bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
