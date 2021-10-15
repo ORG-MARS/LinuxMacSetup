@@ -77,7 +77,7 @@ homebrew() {
   brew uninstall sequel-ace
 
   # shell连接工具
-  brew uninstall electron
+  brew uninstall electerm
 
   # gif录制工具
   brew uninstall licecap

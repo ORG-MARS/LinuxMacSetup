@@ -90,7 +90,7 @@ homebrew() {
   brew install sequel-ace
 
   # shell连接工具
-  brew install electron
+  brew install electerm
 
   # gif录制工具
   brew install licecap
