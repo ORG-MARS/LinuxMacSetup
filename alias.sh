@@ -5,11 +5,12 @@ alias su='su -'
 alias df='df -h'
 
 alias ls='ls -l'
+alias ll='ls -l'
 alias lsa='ls -al'
 
 alias py3='python3'
 alias which='type -p'
-alias md='mkdir -p'
+alias md='mkdir -pv'
 
 alias daemon='supervisorctl -c ~/.supervisord.conf'
 alias act='source venv/bin/activate'
@@ -50,6 +51,8 @@ alias .....='cd ../../../..'
 # git
 alias ga='git add'
 alias gti='git'
+
+alias key="ssh-keygen"
 
 # kubectl setting
 alias k=kubectl
