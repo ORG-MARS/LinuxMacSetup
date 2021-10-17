@@ -24,6 +24,11 @@ alias brewup='brew update && brew upgrade && brew cleanup'
 alias gssh='ssh-keygen'
 # 查看外网Ip
 alias ip='dig +short myip.opendns.com @resolver1.opendns.com'
+# 查看本机ip
+alias localhost='ipconfig getifaddr en0'
+
+#当前时间
+alias now="date +'%Y-%m-%d %T'"
 
 # clear
 alias clera='clear'
