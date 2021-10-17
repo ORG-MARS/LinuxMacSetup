@@ -57,6 +57,10 @@ alias key="ssh-keygen"
 # kubectl setting
 alias k=kubectl
 alias kx=kubectx
+alias kg='kubectl get'
+alias kgp='kubectl get pods'
+alias kgpjson='kubectl get pods -o=json'
+alias kgpn='kubectl get pods -n'
 
 #tunnelblick setting
 # shellcheck disable=SC2142
