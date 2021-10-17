@@ -14,7 +14,8 @@ alias md='mkdir -p'
 alias daemon='supervisorctl -c ~/.supervisord.conf'
 alias act='source venv/bin/activate'
 # 强制遗忘docker神技
-alias docker='podman'
+#alias docker='podman'
+
 # 随机一个可用端口
 alias randp='python -c "import random; print(random.randint(1025, 32768))"'
 # 更新并清理brew管理的软件
