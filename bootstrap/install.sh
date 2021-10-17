@@ -18,6 +18,7 @@ homebrew() {
   # 添加cask和cask-fonts源
   brew tap homebrew/cask
   brew tap homebrew/cask-fonts
+  brew tap homebrew/cask-versions
 
   brew update
   brew upgrade
@@ -124,6 +125,7 @@ homebrew() {
   brew install iterm2
 
   # vpn工具
+  brew tap benwebber/tunnelblickctl
   brew install tunnelblick
 
   # vscode
