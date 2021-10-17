@@ -4,7 +4,6 @@ alias grep='grep --color'
 alias su='su -'
 alias df='df -h'
 
-alias ls='ls -l'
 alias ll='ls -l'
 alias lsa='ls -al'
 
@@ -66,3 +65,9 @@ alias kgpn='kubectl get pods -n'
 # shellcheck disable=SC2142
 alias vpn='f(){ tunnelblickctl disconnect --all; tunnelblickctl connect "$1";}; f'
 alias vpnstop='tunnelblickctl disconnect --all'
+
+# tmux
+alias tl='tmux list-sessions'
+alias tkss='tmux kill-session -t'
+alias ta='tmux attach -t'
+alias ts='tmux new-session -s'
