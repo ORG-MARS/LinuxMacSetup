@@ -186,6 +186,10 @@ homebrew() {
   tfenv use 1.0.9
   terraform -v
 
+  # istioctl
+  brew install istioctl
+  istioctl version
+
   # jdk 11
   brew install corretto11
   java --version
