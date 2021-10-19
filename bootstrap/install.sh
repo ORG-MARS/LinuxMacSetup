@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BASE_DIR="$HOME/.mac_config"
+BASE_DIR="$HOME/.g123"
 
 cloneMacConfigFromGithub() {
   xcode-select --install 2>/dev/null || true
@@ -189,6 +189,9 @@ homebrew() {
   # istioctl
   brew install istioctl
   istioctl version
+
+  # k8s 包管理器
+  brew install helm
 
   # jdk 11
   brew install corretto11
