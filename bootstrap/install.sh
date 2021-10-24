@@ -253,6 +253,9 @@ createLinks() {
   ln -sf "$BASE_DIR/mac_config/alias.sh" "$HOME/.alias"
   echo "$BASE_DIR/mac_config/alias.sh" link to "$HOME/.alias"
 
+  ln -sf "$BASE_DIR/mac_config/envrc.sh" "$HOME/.envrc"
+  echo "$BASE_DIR/mac_config/envrc.sh" link to "$HOME/.envrc"
+
   rm -rf "$HOME/.zshrc"
   ln -sf "$BASE_DIR/mac_config/zshrc" "$HOME/.zshrc"
   echo "$BASE_DIR/mac_config/zshrc" link to "$HOME/.zshrc"

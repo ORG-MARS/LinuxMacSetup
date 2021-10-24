@@ -33,6 +33,9 @@ homebrew() {
   # git命令行增强工具
   brew uninstall tig
 
+  # 实时显示按键
+  brew install keycastr
+
   # 网络测试工具
   brew uninstall mtr
 

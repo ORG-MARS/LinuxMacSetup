@@ -114,20 +114,10 @@ export PATH="$PATH":"/opt/homebrew/Caskroom/flutter/2.2.3/flutter/.pub-cache/bin
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /opt/homebrew/bin/terraform terraform
-source <(kubectl completion zsh)
 source ~/.alias
-
-export TF_SWITCH_HOME=/Users/xiaomo/.terraform.versions
-export PATH=$TF_SWITCH_HOME:$PATH
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
-
-# Kubernetes 自动补全
-[[ /usr/local/bin/kubectl ]] && source <(kubectl completion zsh)
-complete -F __start_kubectl k
+source ~/.envrc
 
 
 
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+
