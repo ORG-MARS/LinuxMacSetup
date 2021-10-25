@@ -149,6 +149,9 @@ homebrew() {
 
   brew install tmux
 
+  # 虚拟机
+  brew install parallels
+
   # 禁用mac自带键盘
   brew install karabiner-elements
 
