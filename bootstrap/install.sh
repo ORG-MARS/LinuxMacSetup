@@ -24,10 +24,7 @@ homebrew() {
   brew upgrade
 
   # gnu官方的一系列工具
-  brew install coreutils
-  brew install findutils
-  brew install gawk
-  brew install gnu-sed
+  brew install coreutils findutils bind-utils gnu-tar gnu-sed gawk gnutls gnu-indent gnu-getopt grep
 
   # 可以生成树形结构
   brew install tree
