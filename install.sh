@@ -17,7 +17,10 @@ sh ./input/init_inputrc.sh
 sh ./env/init_env.sh
 
 # 安装zsh
-sh ./zsh/init_zsh.rc
+sh ./zsh/init_zsh.sh
+
+# 安装fzf
+sh ./fzf/init_fzf.sh
 
 # 安装并开启ssh
 sh ./ssh/init_ssh.sh
