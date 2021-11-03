@@ -1,5 +1,6 @@
 # change root
 sudo -i
+passwd root
 
 # prepare
 apt update -y && apt upgrade -y && apt install curl
