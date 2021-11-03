@@ -1,3 +1,5 @@
+BASE_DIR="$HOME/.xiaomo"
+source ~/.bashrc
 sudo apt install zsh -y
 sudo usermod -s /bin/zsh $(whoami)
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
