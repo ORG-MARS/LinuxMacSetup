@@ -1,5 +1,5 @@
 sudo apt install zsh -y
-chsh -s /bin/zsh
+sudo usermod -s /bin/zsh $(whoami)
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
 # p10k configure 可以重新配置
