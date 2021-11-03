@@ -12,3 +12,7 @@ free -m
 sudo apt install -y policycoreutils selinux-utils selinux-basics
 sudo selinux-config-enforcing
 sestatus
+
+sudo systemctl enable kubelet
+sudo systemctl start kubelet
+sudo systemctl status kubelet
