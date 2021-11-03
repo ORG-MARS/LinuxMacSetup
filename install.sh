@@ -2,8 +2,9 @@
 
 BASE_DIR="$HOME/.xiaomo"
 # 安装git并配置
-sh ./git/init_git.sh
+sudo apt install git -y
 mkdir -p "$BASE_DIR/source"
+cd $BASE_DIR/source
 git clone https://github.com/houko/macOrLinuxConfigSetup.git "$BASE_DIR/source"
 git checkout ubuntu20
 ln -s "$BASE_DIR/source" "$BASE_DIR/config"
