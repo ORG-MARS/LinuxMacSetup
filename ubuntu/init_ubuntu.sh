@@ -7,7 +7,7 @@ BASE_DIR="$HOME/.xiaomo"
 # 允许root登陆
 cp -f $BASE_DIR/source/ubuntu/50-ubuntu.conf /usr/share/lightdm/lightdm.conf.d/50-ubuntu.conf
 cp -f $BASE_DIR/source/ubuntu/gdm-autologin.conf /etc/pam.d/gdm-autologin
-cp -f $BASE_DIR/source/ubuntu/gdm-autologin.conf /etc/pam.d/gdm-autologin
+cp -f $BASE_DIR/source/ubuntu/gdm-password.conf /etc/pam.d/gdm-password
 
 # 关闭Swap
 swapoff -a
