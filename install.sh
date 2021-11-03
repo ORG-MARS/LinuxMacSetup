@@ -1,6 +1,11 @@
 #!/bin/bash
 
 BASE_DIR="$HOME/.xiaomo"
+
+echo export BASE_DIR=$BASE_DIR >> ~/.bashrc
+# shellcheck source=/Users/xiaomo/.bashrc
+source ~/.bashrc
+
 # 安装git并配置
 sudo apt install git -y
 mkdir -p "$BASE_DIR/source"
