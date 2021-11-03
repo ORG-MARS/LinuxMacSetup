@@ -61,11 +61,6 @@ alias kgp='kubectl get pods'
 alias kgpjson='kubectl get pods -o=json'
 alias kgpn='kubectl get pods -n'
 
-#tunnelblick setting
-# shellcheck disable=SC2142
-alias vpn='f(){ tunnelblickctl disconnect --all; tunnelblickctl connect "$1";}; f'
-alias vpnstop='tunnelblickctl disconnect --all'
-
 # tmux
 alias tl='tmux list-sessions'
 alias tkss='tmux kill-session -t'
