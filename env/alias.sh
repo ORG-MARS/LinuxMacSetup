@@ -6,6 +6,7 @@ alias df='df -h'
 
 alias ll='ls -l'
 alias lsa='ls -al'
+alias lla='ls -al'
 
 alias py3='python3'
 alias which='type -p'
