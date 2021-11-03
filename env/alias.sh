@@ -26,7 +26,7 @@ alias gssh='ssh-keygen'
 # 查看外网Ip
 alias ip='dig +short myip.opendns.com @resolver1.opendns.com'
 # 查看本机ip
-alias localhost='ipconfig getifaddr en0'
+alias localhost='ifconfig eth0 | grep inet'
 
 #当前时间
 alias now="date +'%Y-%m-%d %T'"
