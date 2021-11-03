@@ -63,11 +63,6 @@ sh $BASE_DIR/source/k8s/init_k8s.sh
 sh $BASE_DIR/source/k8s/init_kubectx.sh
 
 echo '######################################################'
-echo '################### 开始安装terraform #################'
-echo '######################################################'
-sh $BASE_DIR/source/terraform/init_terraform.sh
-
-echo '######################################################'
 echo '################### 开始安装fzf检索工具 #################'
 echo '######################################################'
 sh $BASE_DIR/source/fzf/init_fzf.sh
