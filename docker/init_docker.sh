@@ -4,17 +4,16 @@ sh get-docker.sh
 #sudo chmod 666 /var/run/docker.sock
 sudo usermod -aG docker $USER
 
-daemon= <<EOF
+sudo bash -c 'echo "
 {
-"exec-opts": ["native.cgroupdriver=systemd"]
+  "exec-opts": ["native.cgroupdriver=systemd"]
 }
-EOF
+" >> /etc/docker/daemon.json'
 
-sudo cat $daemon > /etc/docker/daemon.json
 sudo mkdir -p /etc/systemd/system/docker.service.d
 sudo systemctl daemon-reload
 sudo systemctl restart docker
-docker info|grep "Cgroup Driver"
+docker info | grep "Cgroup Driver"
 
 sudo systemctl start docker
 sudo systemctl enable docker
