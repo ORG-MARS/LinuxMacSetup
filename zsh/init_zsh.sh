@@ -8,5 +8,5 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM
 
 # 删除原来的.zsh文件并将配置好的代码链接到zsh
 rm -rf "$HOME/.zshrc"
-ln -sf "$BASE_DIR/mac_config/zshrc" "$HOME/.zshrc"
-echo "$BASE_DIR/mac_config/zshrc" link to "$HOME/.zshrc"
+ln -sf "$BASE_DIR/source/zshrc" "$HOME/.zshrc"
+echo "$BASE_DIR/source/zshrc" link to "$HOME/.zshrc"
