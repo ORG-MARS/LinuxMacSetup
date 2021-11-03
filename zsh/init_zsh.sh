@@ -1,7 +1,7 @@
 BASE_DIR="$HOME/.xiaomo"
 source ~/.bashrc
-sudo apt install zsh -y
-sudo usermod -s /bin/zsh $(whoami)
+apt install zsh -y
+usermod -s /bin/zsh $(whoami)
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"/plugins/zsh-autosuggestions
 # p10k configure 可以重新配置

@@ -15,4 +15,4 @@ kubectl krew install ns
 
 cd /tmp
 git clone https://github.com/ahmetb/kubectx
-sudo cp kubectx/kube* /usr/local/bin/
+cp kubectx/kube* /usr/local/bin/

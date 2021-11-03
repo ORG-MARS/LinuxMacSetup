@@ -1,7 +1,7 @@
-sudo apt install net-tools -y
-sudo apt install openssh-server -y
-sudo systemctl status ssh
-sudo ufw allow ssh
+apt install net-tools -y
+apt install openssh-server -y
+systemctl status ssh
+ufw allow ssh
 
 # 创建ssh密钥
 ssh-keygen -q -N " " -f ~/.ssh/id_rsa

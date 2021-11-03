@@ -1,5 +1,5 @@
 # /etc/network/interfaces
-# sudo systemctl restart networking
+# systemctl restart networking
 auto eth0
 iface eth0 inet static
 address 192.168.2.53
