@@ -5,20 +5,20 @@ echo export BASE_DIR=$BASE_DIR >>~/.bashrc
 # shellcheck source=/Users/xiaomo/.bashrc
 source ~/.bashrc
 echo '######################################################'
-echo  \t\t设置环境变量:BASE_DIR= ${BASE_DIR}
+echo 设置环境变量:BASE_DIR= ${BASE_DIR}
 echo '######################################################'
 
 # 安装git并配置
 sudo apt install git -y
 echo '######################################################'
-echo  '#################### 开始安装git.....'
+echo '#################### 开始安装git.....'
 echo '######################################################'
 
 mkdir -p "$BASE_DIR/source"
 cd $BASE_DIR/source
 git clone https://github.com/houko/macOrLinuxConfigSetup.git "$BASE_DIR/source"
 echo '######################################################'
-echo \t\tclone代码到${BASE_DIR}/source下
+echo clone代码到${BASE_DIR}/source下
 echo '######################################################'
 git checkout ubuntu20
 echo '######################################################'
