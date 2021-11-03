@@ -8,3 +8,5 @@ echo k8s版本
 kubectl version
 echo kbadm版本
 kubeadm version
+systemctl enable --now kubelet
+
