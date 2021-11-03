@@ -6,5 +6,6 @@ sudo ufw allow ssh
 # 创建ssh密钥
 ssh-keygen -q -N " " -f ~/.ssh/id_rsa
 chmod 700 ~/.ssh
-chmod 600 authorized_keys
-cat ~/.ssh/id_rsa.pub >> authorized_keys
+touch ~/.ssh/authorized_keys
+chmod 600 ~/.ssh/authorized_keys
+cat ~/.ssh/id_rsa.pub >>authorized_keys
