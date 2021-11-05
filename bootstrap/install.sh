@@ -126,11 +126,13 @@ homebrew() {
   brew install iterm2
 
   # vpn工具
-  brew tap benwebber/tunnelblickctl
-  brew install tunnelblick
+  brew install viscosity
 
   # vscode
   brew install visual-studio-code
+
+  # client
+  brew install royal-tsx
 
   # sublime
   brew install sublime-text
