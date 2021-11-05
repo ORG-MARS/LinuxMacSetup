@@ -1,4 +1,4 @@
-# change root
+# change root(if you are root please skip this)
 - sudo -i
 - passwd root
 
@@ -7,3 +7,6 @@
 
 # install 
 - curl -L https://raw.githubusercontent.com/houko/LinuxMacSetup/ubuntu20/install.sh | sh
+
+# kubeadm 
+kubeadm init
