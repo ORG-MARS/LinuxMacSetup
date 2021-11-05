@@ -63,8 +63,7 @@ alias kgpn='kubectl get pods -n'
 
 #tunnelblick setting
 # shellcheck disable=SC2142
-alias vpn='f(){ tunnelblickctl disconnect --all; tunnelblickctl connect "$1";}; f'
-alias vpnstop='tunnelblickctl disconnect --all'
+alias vpn='sh $HOME/.xiaomo/source/viscosity.sh'
 
 # tmux
 alias tl='tmux list-sessions'
